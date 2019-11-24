@@ -1,0 +1,36 @@
+TABLE {
+    margin: 1% ;
+    width: 100%; /* Ширина таблицы */
+    border: white; /* Рамка вокруг таблицы (между столбцами)*/
+    border-collapse: collapse; /* Убираем двойные линии между ячейками */
+    border-style: hidden;
+
+}
+TD, TH {
+    padding: 10px; /* Поля вокруг содержимого ячейки */
+    text-align: left;
+}
+TD {
+    color: #222;
+    font-family: "Yu Gothic";
+    text-align: left; /* Выравнивание по центру */
+    border-bottom: 1px solid #9F9F9F; /* Линия внизу ячейки */
+}
+
+.btn-danger{
+    padding: 0;
+    padding: 2% 5%;
+}
+.btn-primary{
+    padding: 0;
+    padding: 2% 5%;
+}
+.textCreate{;
+    color: aqua;
+}
+nav{
+    width: 100%;
+}
+.tab-content{
+    width: 100%;
+}
