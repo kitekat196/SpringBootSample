@@ -1,5 +1,4 @@
 package com.cko.sampleSpringProject;
-
 import com.cko.sampleSpringProject.dao.FilmDAO;
 import com.cko.sampleSpringProject.model.Authority;
 import com.cko.sampleSpringProject.model.Film;
@@ -8,6 +7,7 @@ import com.cko.sampleSpringProject.service.AuthorityService;
 import com.cko.sampleSpringProject.service.SMSCService;
 import com.cko.sampleSpringProject.service.UserService;
 
+import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -30,16 +30,25 @@ public class InitData {
     @Autowired
     FilmDAO filmDAO;
 
+
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+
+    Faker faker = new Faker();
+
+
+
     public void initData() {
-
-        Film film = new Film("Iron Man", 9, 2009);
-        filmDAO.save(film);
+        initFilms();
         initUserAndRoles();
-
-
+    }
+    private void  initFilms(){
+        for (int i = 0; i < 10; i++) {
+            Film film = new Film(faker.superhero().name(), i, i*2);
+            filmDAO.save(film);
+        }
     }
 
     private void initUserAndRoles(){
