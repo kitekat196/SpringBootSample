@@ -41,8 +41,9 @@ public class InitData {
 
 
     public void initData() {
-        initFilms();
+        //initFilms();
         initUserAndRoles();
+
     }
     private void  initFilms(){
         for (int i = 0; i < 10; i++) {

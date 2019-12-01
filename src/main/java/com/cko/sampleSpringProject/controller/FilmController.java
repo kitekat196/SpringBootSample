@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import java.util.Optional;
+import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
 
 @Controller
 public class FilmController {
@@ -17,32 +18,53 @@ public class FilmController {
     FilmDAO filmDAO;
 
     @GetMapping("/allFilm")
-    public String allFilms(){
-
-        return "allFilm";
+    public ModelAndView allFilms() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("allFilm");
+        List<Film> filmsList = filmDAO.findAll();
+        modelAndView.addObject("films", filmsList);
+        return modelAndView;
     }
+
     @GetMapping("/createFilm")
-    public String crFilms(){
+    public String crFilms() {
         return "createFilms";
     }
 
     @PostMapping("/createFilm")
-    public String addNewFilm(Film film){
+    public RedirectView addNewFilm(Film film) {
         filmDAO.save(film);
-        return "allFilm";
+        return new RedirectView( "/allFilm");
     }
 
     @GetMapping("/editFilm")
-    public ModelAndView edFilms(@RequestParam Long id){
+    public ModelAndView edFilms(@RequestParam Long id) {
         ModelAndView modelAndView = new ModelAndView();
         Film film = filmDAO.findFilmById(id);
         modelAndView.addObject("film", film);
         modelAndView.setViewName("editFilm");
         return modelAndView;
     }
+
     @PostMapping("/editFilm")
-    public String editFilm(Film film){
+    public RedirectView editFilm(Film film) {
         filmDAO.save(film);
-        return "allFilm";
+        return new RedirectView( "/allFilm");
     }
+
+    @GetMapping("/tesT")
+    public ModelAndView testT(@RequestParam Long id) {
+        ModelAndView modelAndView = new ModelAndView();
+        Film film = filmDAO.findFilmById(id);
+        modelAndView.addObject("film", film);
+        modelAndView.setViewName("tesT");
+        return modelAndView;
+    }
+    @GetMapping("/deleteFilm")
+    public RedirectView delete(@RequestParam long id){
+       filmDAO.deleteById(id);
+        return new RedirectView("/allFilm");
+    }
+
+
 }
