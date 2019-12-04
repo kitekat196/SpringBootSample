@@ -20,20 +20,20 @@
             <tr>
                 <th scope="col">#ID</th>
                 <th scope="col">Title</th>
-                <th scope="col">Rating</th>
-                <th scope="col">Age</th>
+                <th scope="col">Price</th>
+                <th scope="col">Amount</th>
                 <th scope="col">Activity</th>
-            </tr>0
+            </tr>
             </thead>
             <tbody>
-            <tr th:each="filmAll : ${films}" >
-                <td th:text="${filmAll.id}"></td>
-                <td th:text="${filmAll.title}"></td>
-                <td th:text="${filmAll.rating}"></td>
-                <td th:text="${filmAll.age}"></td>
+            <tr th:each="productsAll : ${products}" >
+                <td th:text="${productsAll.id}"></td>
+                <td th:text="${productsAll.name}"></td>
+                <td th:text="${productsAll.price}"></td>
+                <td th:text="${productsAll.amount}"></td>
                 <td>
-                    <a  th:href="@{'/editFilm?id=' + ${filmAll.id}}">Edit</a>
-                    <a  th:href="@{'/deleteFilm?id=' + ${filmAll.id}}">Delete</a>
+<!--                    <a  th:href="@{'/editFilm?id=' + ${filmAll.id}}">Edit</a>-->
+                    <a  th:href="@{'/products/buy?id=' + ${productsAll.id}}">Buy</a>
                 </td>
 
             </tr>
@@ -44,7 +44,7 @@
 </div>
 <div class="container">
     <div class="row">
-        <a href="/createFilm" type="button" class="btn btn-success">Create</a>
+        <a href="/products/add" type="button" class="btn btn-success">Create</a>
     </div>
 </div>
 

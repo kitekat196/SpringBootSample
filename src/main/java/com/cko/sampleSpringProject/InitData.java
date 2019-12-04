@@ -1,7 +1,9 @@
 package com.cko.sampleSpringProject;
 import com.cko.sampleSpringProject.dao.FilmDAO;
+import com.cko.sampleSpringProject.dao.ProductDAO;
 import com.cko.sampleSpringProject.model.Authority;
 import com.cko.sampleSpringProject.model.Film;
+import com.cko.sampleSpringProject.model.Products;
 import com.cko.sampleSpringProject.model.User;
 import com.cko.sampleSpringProject.service.AuthorityService;
 import com.cko.sampleSpringProject.service.SMSCService;
@@ -30,7 +32,8 @@ public class InitData {
     @Autowired
     FilmDAO filmDAO;
 
-
+    @Autowired
+    ProductDAO productDAO;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
