@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ProductController {
@@ -23,11 +24,22 @@ Long qq;
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("allProducts");
         List<Products> productList = productDAO.findAll();
+
         modelAndView.addObject("products", productList);
         return modelAndView;
     }
 
-
+    @PostMapping("/search")
+    public String Search(@RequestParam (value="price", required = true) Integer price, Map<String, Object> search){
+        Iterable<Products> products;
+        if(price == null) {
+            products = productDAO.findAll();
+        } else {
+            products = productDAO.findByPriceLessThanEqual(price);
+        }
+        search.put("products", products);
+        return "allProducts";
+    }
 
     @GetMapping("/products/add")
     public String addProducts(){
@@ -99,5 +111,7 @@ Long qq;
     public String error(){
         return "ProductError";
     }
+
+
 
 }
