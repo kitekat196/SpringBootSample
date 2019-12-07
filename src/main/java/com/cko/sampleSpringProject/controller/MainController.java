@@ -23,8 +23,7 @@ public class MainController {
     }
 
     @GetMapping("/test")
-    public String testing(@RequestParam String name) {
-        System.out.println(name);
+    public String testing() {
         return "test";
     }
 

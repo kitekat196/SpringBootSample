@@ -26,11 +26,11 @@ public class SuccessRedirectHandler implements AuthenticationSuccessHandler {
 
         if (roles.contains("ROLE_ADMIN")) {
             httpServletResponse.setStatus(HttpStatus.OK.value());
-            httpServletResponse.sendRedirect("/map/test");
+            httpServletResponse.sendRedirect("/products/all");
 
         } else if(roles.contains("ROLE_USER")) {
             httpServletResponse.setStatus(HttpStatus.OK.value());
-            httpServletResponse.sendRedirect("/map/test");
+            httpServletResponse.sendRedirect("/products/all");
         }
     }
 }

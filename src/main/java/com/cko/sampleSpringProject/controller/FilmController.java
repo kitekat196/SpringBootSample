@@ -56,7 +56,7 @@ public class FilmController {
         ModelAndView modelAndView = new ModelAndView();
         Film film = filmDAO.findFilmById(id);
         modelAndView.addObject("film", film);
-        modelAndView.setViewName("tesT");
+        modelAndView.setViewName("test");
         return modelAndView;
     }
     @GetMapping("/deleteFilm")
