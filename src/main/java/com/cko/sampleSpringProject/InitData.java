@@ -44,13 +44,16 @@ public class InitData {
 
 
     public void initData() {
-        Film film = new Film(faker.superhero().name(), 1, 13);
-        filmDAO.save(film);
-        //initFilms();
+        initFilms();
         initUserAndRoles();
 
     }
-
+    public void initFilms(){
+        for (int i = 0; i < 4; i++) {
+            Film film = new Film(faker.superhero().name(), i, i+3);
+            filmDAO.save(film);
+        }
+    }
 
     private void initUserAndRoles(){
         Authority adminAuthority = new Authority("ROLE_ADMIN");
