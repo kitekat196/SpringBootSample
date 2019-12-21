@@ -44,11 +44,7 @@ public class InitData {
 
 
     public void initData() {
-        initFilms();
         initUserAndRoles();
-
-    }
-    public void initFilms(){
         for (int i = 0; i < 4; i++) {
             Film film = new Film(faker.superhero().name(), i, i+3);
             filmDAO.save(film);
