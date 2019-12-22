@@ -18,10 +18,12 @@ public class FilmRestController {
     public void addFilm(@RequestBody Film film) {
         filmDAO.save(film);
     }
+
     @GetMapping("/get")
     public Film getFilmById(@RequestParam Long id) {
         return filmDAO.findFilmById(id);
     }
+    
     @GetMapping("/all")
     public List<Film> getFilmById() {
         List<Film> films = filmDAO.findAll();
