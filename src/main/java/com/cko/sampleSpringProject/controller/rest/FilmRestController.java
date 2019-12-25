@@ -30,4 +30,9 @@ public class FilmRestController {
         return films;
     }
 
+    @GetMapping("/del")
+    public void delFilm(@RequestParam Long id){
+        filmDAO.deleteById(id);
+    }
+
 }

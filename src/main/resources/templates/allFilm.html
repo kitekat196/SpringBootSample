@@ -90,7 +90,36 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Ну че? Уверен?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Не восстановить же потом</p>
+                <form >
+                    <div id="id-delete"></div>
+                    <div id="title-delete"></div>
+                    <div id="rating-delete" ></div>
+                    <div id="age-delete"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" onclick="saveDataFilm()">Delete</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+</div>
+
 
 
 <!--<button onclick="test()" type="button" class="btn btn-primary">Click pls</button>-->

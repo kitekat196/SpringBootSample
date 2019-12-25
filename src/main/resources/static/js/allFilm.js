@@ -37,7 +37,7 @@ $(document).ready(function() {
                     "<button  type=\"button\" class=\"btn btn-primary\" data-toggle=\"modal\" onclick=\"editFilm("+ film[i].id+")\" data-target=\"#editModal\">\n" +
                     "Create\n" +
                     "</button>" +
-                    "<a class='\btn btn-danger' href=\"deleteFilm?id=" + film[i].id + "\">Buy</a>" +
+                    "<a type=\"button\" class='\btn btn-danger' data-toggle=\"modal\" data-target=\"#deleteModal\" onclick=\"deleteFilm("+ film[i].id+")\" >Delete</a>" +
                     "</td>"+
                     "</tr>");
                 console.log(film[i].title);
@@ -50,11 +50,60 @@ $(document).ready(function() {
     });
 });
 
+function deleteFilm(id) {
+    $.ajax({
+        method: "get",
+        url:"/api/film/get?id=" + id,
+        contentType: "application/json; charset=utf-8",
+        success: function(film){
+            console.log(film);
+            var title = film.title;
+            var rating = film.rating;
+            var age = film.age;
+            $("#id-delete").val(id);
+            $("#title-delete").val(title);
+            $("#rating-delete").val(rating);
+            $("#age-delete").val(age);
+
+            var newFilm={
+                'title' : title,
+                'rating': rating,
+                'age': age
+            }
+        }
+    });
+}
+
+function saveDataFilm() {
+    var id = $("#id-delete").val();
+    var title =  $("#title-delete").val();
+    var rating = $("#rating-delete").val();
+    var age = $("#age-delete").val();
+
+    var newFilm= {
+        'id' : id,
+        'title' : title,
+        'rating' : rating,
+        'age' : age
+    };
+    $.ajax({
+        method: "get",
+        url: "/api/film/del?id=" + id,
+        contentType: 'application/json; charset=utf-8',
+        success: function () {
+            window.location.replace("/allFilm")
+        },
+        error: function (error) {
+
+        }
+    });
+
+
+}
 
 
 function editFilm(id) {
     alert(id);
-
     $.ajax({
         method: "get",
         url:"/api/film/get?id=" + id,
@@ -74,11 +123,8 @@ function editFilm(id) {
                 'rating': rating,
                 'age': age
             }
-
         }
-
-    })
-
+    });
 }
 function saveData() {
     var id = $("#id-edit").val();
@@ -91,7 +137,7 @@ function saveData() {
         'title' : title,
         'rating' : rating,
         'age' : age
-    }
+    };
     $.ajax({
         method: "post",
         url: "/api/film/add",
@@ -105,6 +151,9 @@ function saveData() {
         }
     });
 }
+
+
+
 
 
 
@@ -125,6 +174,7 @@ function addFilm() {
         data: JSON.stringify(newFilm),
         success: function () {
             window.location.replace("/allFilm")
+
         },
         error: function (error) {
 
