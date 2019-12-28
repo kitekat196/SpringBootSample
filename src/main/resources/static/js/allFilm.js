@@ -76,16 +76,7 @@ function deleteFilm(id) {
 
 function saveDataFilm() {
     var id = $("#id-delete").val();
-    var title =  $("#title-delete").val();
-    var rating = $("#rating-delete").val();
-    var age = $("#age-delete").val();
 
-    var newFilm= {
-        'id' : id,
-        'title' : title,
-        'rating' : rating,
-        'age' : age
-    };
     $.ajax({
         method: "get",
         url: "/api/film/del?id=" + id,
